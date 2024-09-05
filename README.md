@@ -1,5 +1,4 @@
-# Equirectangular Point Reconstruction for Domain Adaptive Multimodal 3D Object Detection in Adverse Weather Conditions
-
+# Multimodal 3D object detection
 
 
 ## Training & Testing

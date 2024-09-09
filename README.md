@@ -3,7 +3,7 @@
 ## Installation
 The code is developed with **CUDA 11.1**, **Python >= 3.8.19**, **PyTorch >= 1.10.1**
 
-**Create a virtual environment**
+**Install the environment**
 ```
 conda create -n oprnet python=3.8
 conda activate oprnet

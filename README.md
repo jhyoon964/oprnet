@@ -10,7 +10,7 @@ conda install -y -c fvcore -c iopath -c conda-forge fvcore iopath
 conda install -y pytorch3d -c pytorch3d
 pip install numpy==1.19.5 protobuf==3.19.4 scikit-image==0.19.2 waymo-open-dataset-tf-2-2-0 nuscenes-devkit==1.0.5 spconv-cu111 numba scipy pyyaml easydict fire tqdm shapely matplotlib opencv-python addict pyquaternion awscli open3d pandas future pybind11 tensorboardX tensorboard Cython
 pip install torch-scatter -f https://data.pyg.org/whl/torch-1.10.1+cu111.html
-git clone https://github.com/Nightmare-n/GD-MAE
+git clone https://github.com/jhyoon964/oprnet.git
 cd oprnet && python setup.py develop --user
 cd pcdet/ops/dcn && python setup.py develop --user
 ```

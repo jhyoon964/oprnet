@@ -14,7 +14,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 NGPUS=4
 
-CFG_NAME=kitti_models/equidetect
+CFG_NAME=kitti_models/oprnet
 TAG_NAME=default
 
 python -m torch.distributed.launch --nproc_per_node=${NGPUS} --master_port $PORT test.py --launcher pytorch --cfg_file cfgs/$CFG_NAME.yaml --workers 4 --extra_tag $TAG_NAME

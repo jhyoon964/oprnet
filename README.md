@@ -25,6 +25,25 @@ cd oprnet && python setup.py develop --user
 cd pcdet/ops/dcn && python setup.py develop --user
 ```
 
+## Dataset structure
+data
+│── skitti
+│   │── ImageSets/
+│   │── training
+│   │   │── label_2/
+│   │   │── velodyne/
+│   │   │── ...
+│   │── testing
+│   │   │── velodyne/
+│   │   │── ...
+│   │── gt_database/
+│   │── kitti_dbinfos_train.pkl
+│   │── kitti_infos_test.pkl
+│   │── kitti_infos_train.pkl
+│   │── kitti_infos_val.pkl
+│   │── kitti_infos_trainval.pkl
+
+
 
 ## Training & Testing
 ```

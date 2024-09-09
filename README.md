@@ -26,6 +26,7 @@ cd pcdet/ops/dcn && python setup.py develop --user
 ```
 
 ## Dataset structure
+```
 data
 │── skitti
 │   │── ImageSets/
@@ -42,7 +43,7 @@ data
 │   │── kitti_infos_train.pkl
 │   │── kitti_infos_val.pkl
 │   │── kitti_infos_trainval.pkl
-
+```
 
 
 ## Training & Testing

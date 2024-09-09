@@ -1,9 +1,9 @@
 # Multimodal 3D object detection
 
 ## Installation
-We test this project on RTX-3080 GPU.
+The code is developed with **CUDA 11.1**, **Python >= 3.8.19**, **PyTorch >= 1.10.1**
 ```
-conda create -n oprnet python=3.7
+conda create -n oprnet python=3.8
 conda activate oprnet
 conda install -y pytorch==1.10.1 torchvision==0.11.2 cudatoolkit=11.1 -c pytorch -c conda-forge
 conda install -y -c fvcore -c iopath -c conda-forge fvcore iopath

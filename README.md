@@ -25,7 +25,7 @@ cd oprnet && python setup.py develop --user
 cd pcdet/ops/dcn && python setup.py develop --user
 ```
 
-## Dataset structure
+## Data Preparation
 ```
 data
 │── skitti

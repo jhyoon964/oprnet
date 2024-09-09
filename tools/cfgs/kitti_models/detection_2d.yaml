@@ -1,0 +1,108 @@
+CLASS_NAMES: ['Car']
+
+DATA_CONFIG: 
+    _BASE_CONFIG_: cfgs/dataset_configs/kitti_dataset.yaml
+    GET_ITEM_LIST: ["points", "image", "calib_matricies", "gt_boxes2d"]
+    DATA_AUGMENTOR:
+        DISABLE_AUG_LIST: ['placeholder']
+        AUG_CONFIG_LIST:
+            - NAME: random_world_flip
+              PROBABILITY: 0.5
+              ALONG_AXIS_LIST: ['x']
+
+            - NAME: random_world_rotation
+              PROBABILITY: 1.0
+              WORLD_ROT_ANGLE: [-0.78539816, 0.78539816]
+
+            - NAME: random_world_scaling
+              PROBABILITY: 1.0
+              WORLD_SCALE_RANGE: [0.95, 1.05]
+            
+
+    DATA_PROCESSOR:
+        - NAME: mask_points_and_boxes_outside_range
+          REMOVE_OUTSIDE_BOXES: True
+
+        - NAME: shuffle_points
+          SHUFFLE_ENABLED: {
+            'train': True,
+            'test': False
+          }
+
+        - NAME: calculate_grid_size
+          VOXEL_SIZE: [0.05, 0.05, 0.1]
+
+        - NAME: imrescale
+          IMAGE_SCALES: {
+            'train': [[640, 192], [2560, 768]],
+            'test': [[1280, 384]]
+          }
+          KEEP_RATIO: True
+
+        - NAME: imflip
+          FLIP_RATIO: {
+            'train': 0.5,
+            'test': 0
+          }
+
+        - NAME: imnormalize
+          MEAN: [104.014, 114.034, 119.917]
+          STD: [73.603, 69.891, 70.915]
+          TO_RGB: False
+
+        - NAME: impad
+          SIZE_DIVISOR: 32
+
+MODEL:
+    NAME: Aux_2d
+
+    # FREEZE_LAYERS: ['DLASeg']
+    
+    IMG_BACKBONE:
+        NAME: DLASeg
+        BASE_NAME: dla34
+        DOWN_RATIO: 4
+        LAST_LEVEL: 5
+
+    HEAD_2D:
+        NAME: 
+
+
+
+
+
+    POST_PROCESSING:
+        RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+        SCORE_THRESH: 0.3
+        OUTPUT_RAW_SCORE: False
+
+        EVAL_METRIC: kitti
+
+        NMS_CONFIG:
+            MULTI_CLASSES_NMS: False
+            NMS_TYPE: nms_gpu
+            NMS_THRESH: 0.1
+            NMS_PRE_MAXSIZE: 4096
+            NMS_POST_MAXSIZE: 500
+
+
+OPTIMIZATION:
+    BATCH_SIZE_PER_GPU: 4
+    NUM_EPOCHS: 80
+
+    OPTIMIZER: adam_onecycle
+    LR: 0.003
+    WEIGHT_DECAY: 0.01
+    MOMENTUM: 0.9
+
+    MOMS: [0.95, 0.85]
+    PCT_START: 0.4
+    DIV_FACTOR: 10
+    DECAY_STEP_LIST: [35, 45]
+    LR_DECAY: 0.1
+    LR_CLIP: 0.0000001
+
+    LR_WARMUP: False
+    WARMUP_EPOCH: 1
+
+    GRAD_NORM_CLIP: 10
